@@ -33,7 +33,7 @@ Simply put the following snippet into your proper build config:
 <dependency>
     <groupId>me.pagar</groupId>
     <artifactId>pagarme-java</artifactId>
-    <version>${version.pagarme}</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
