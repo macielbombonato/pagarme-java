@@ -48,7 +48,9 @@ repositories {
 
 ##### Dependency
 ```groovy
-compile 'me.pagar:pagarme-java:1.0.1'
+compile('me.pagar:pagarme-java:1.0.1') {
+    transitive = true
+}
 ```
 
 #### Apache Buildr
