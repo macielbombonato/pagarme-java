@@ -48,21 +48,21 @@ repositories {
 
 ##### Dependency
 ```
-compile 'me.pagar:pagarme-java:1.0.0'
+compile 'me.pagar:pagarme-java:1.0.1'
 ```
 
 #### Apache Buildr
 
 ##### Dependency
 ```
-'me.pagar:pagarme-java:jar:1.0.0'
+'me.pagar:pagarme-java:jar:1.0.1'
 ```
 
 #### Apache Ivy
 
 ##### Dependency
 ```
-<dependency org="me.pagar" name="pagarme-java" rev="1.0.0">
+<dependency org="me.pagar" name="pagarme-java" rev="1.0.1">
     <artifact name="pagarme-java" type="jar" />
 </dependency>
 ```
@@ -72,7 +72,7 @@ compile 'me.pagar:pagarme-java:1.0.0'
 ##### Dependency
 ```
 @Grapes(
-  @Grab(group='me.pagar', module='pagarme-java', version='1.0.0')
+  @Grab(group='me.pagar', module='pagarme-java', version='1.0.1')
 )
 ```
 
@@ -80,14 +80,14 @@ compile 'me.pagar:pagarme-java:1.0.0'
 
 ##### Dependency
 ```
-libraryDependencies += "me.pagar" % "pagarme-java" % "1.0.0"
+libraryDependencies += "me.pagar" % "pagarme-java" % "1.0.1"
 ```
 
 #### Leiningen
 
 ##### Dependency
 ```
-[me.pagar/pagarme-java "1.0.0"]
+[me.pagar/pagarme-java "1.0.1"]
 ```
 
 ## License
