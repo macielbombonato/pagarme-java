@@ -92,7 +92,7 @@ public class RestClient {
         }
 
 
-        headers.put("User-Agent", "pagarme-java 1.0.0");
+        headers.put("User-Agent", "pagarme-java 1.0.1");
         headers.put("Accept", "application/json");
 
         if (Strings.isNullOrEmpty(url)) {

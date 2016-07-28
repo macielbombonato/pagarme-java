@@ -151,7 +151,7 @@ public class Transaction extends PagarMeModel<Integer> {
      * Data de expiração do boleto (em ISODate)
      */
     @Expose(deserialize = false)
-    private LocalDate boletoExpirationDate;
+    private DateTime boletoExpirationDate;
 
     /**
      * Data de atualização da transação no formato ISODate
@@ -457,7 +457,7 @@ public class Transaction extends PagarMeModel<Integer> {
         addUnsavedProperty("customer");
     }
 
-    public void setBoletoExpirationDate(final LocalDate boletoExpirationDate) {
+    public void setBoletoExpirationDate(final DateTime boletoExpirationDate) {
         this.boletoExpirationDate = boletoExpirationDate;
         addUnsavedProperty("boletoExpirationDate");
     }
