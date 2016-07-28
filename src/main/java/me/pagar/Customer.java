@@ -2,6 +2,8 @@ package me.pagar;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import me.pagar.util.JsonUtils;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -124,14 +126,41 @@ public class Customer extends PagarMeModel<Integer> {
         addUnsavedProperty("phone");
     }
 
-    @Override
-    public void setId(Integer id) {
-        throw new UnsupportedOperationException("Not allowed.");
+    public Customer save() throws PagarMeException {
+        final Customer saved = super.save(getClass());
+        copy(saved);
+
+        return saved;
     }
 
-    @Override
-    public void setClassName(String className) {
-        throw new UnsupportedOperationException("Not allowed.");
+    private void copy(Customer other) {
+        setId(other.getId());
+        this.documentNumber = other.documentNumber;
+        this.documentType = other.documentType;
+        this.name = other.name;
+        this.email = other.email;
+        this.gender = other.gender;
+        this.bornAt = other.bornAt;
+        this.addresses = other.addresses;
+        this.phones = other.phones;
+    }
+
+    /**
+     * @see #list(int, int)
+     */
+    public Collection<Customer> list() throws PagarMeException {
+        return list(100, 0);
+    }
+
+    /**
+     * @param totalPerPage
+     * @param page
+     * @return
+     * @throws PagarMeException
+     */
+    public Collection<Customer> list(int totalPerPage, int page) throws PagarMeException {
+        return JsonUtils.getAsList(super.paginate(totalPerPage, page), new TypeToken<Collection<Customer>>() {
+        }.getType());
     }
 
 }

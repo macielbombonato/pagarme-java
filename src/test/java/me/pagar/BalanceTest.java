@@ -6,18 +6,18 @@ import org.junit.Test;
 
 public class BalanceTest extends BaseTest {
 
-    private Balance recipient;
+    private Balance balance;
 
     @Before
     public void setUp() {
         super.setUp();
-        recipient = new Balance();
+        balance = new Balance();
     }
 
     @Test
     public void testRefresh() throws Throwable {
-        recipient.refresh();
-        Assert.assertNotNull(recipient.getAvailable());
+        balance.refresh();
+        Assert.assertNotNull(balance.getAvailable());
     }
 
 

@@ -22,6 +22,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Classe base para modelos contendo metodos genéricos de retorno de dados.
+ *
+ * @param <PK> Tipo da Primary Key
+ */
 public abstract class PagarMeModel<PK extends Serializable> {
 
     /**
@@ -38,10 +43,19 @@ public abstract class PagarMeModel<PK extends Serializable> {
     @SerializedName("date_created")
     private DateTime createdAt;
 
+    /**
+     * Nome da classe no plural, lower case e undesrcored.
+     */
     private transient String className;
 
+    /**
+     * {@link Collection} de atributos que tiveram seus valores alterados.
+     */
     private transient Collection<String> dirtyProperties;
 
+    /**
+     * Valida se o atributo {@link #id} foi preenchido.
+     */
     protected void validateId() {
 
         if (getId() == null) {
@@ -69,6 +83,9 @@ public abstract class PagarMeModel<PK extends Serializable> {
         return createdAt;
     }
 
+    /**
+     * {@link #className}
+     */
     public String getClassName() {
         return className;
     }
@@ -81,26 +98,44 @@ public abstract class PagarMeModel<PK extends Serializable> {
         this.className = className;
     }
 
+    /**
+     * Atualiza o estado do modelo
+     *
+     * @return A representação atualizada do estado do modelo
+     * @throws PagarMeException
+     */
     protected JsonObject refreshModel() throws PagarMeException {
         return get(this.id);
     }
-    
+
+    /**
+     * Obtem um modelo pelo id.
+     * @param id Identificação do Modelo
+     * @return A representação do estado do modelo
+     * @throws PagarMeException
+     */
     protected JsonObject get(final PK id) throws PagarMeException {
         validateId();
-
-        if (null == id) {
-            throw new IllegalArgumentException("You must provide an ID to get this object data");
-        }
-
-        final PagarMeRequest request = new PagarMeRequest(HttpMethod.GET, String.format("/%s/%s", className, id));
-
-        return request.execute();
+        return new PagarMeRequest(HttpMethod.GET, String.format("/%s/%s", className, id)).execute();
     }
 
+    /**
+     *
+     * @param totalPerPage
+     * @return
+     * @throws PagarMeException
+     */
     protected JsonArray paginate(final Integer totalPerPage) throws PagarMeException {
         return paginate(totalPerPage, 1);
     }
 
+    /**
+     *
+     * @param totalPerPage
+     * @param page
+     * @return
+     * @throws PagarMeException
+     */
     protected JsonArray paginate(final Integer totalPerPage, Integer page) throws PagarMeException {
         final Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -120,9 +155,17 @@ public abstract class PagarMeModel<PK extends Serializable> {
         return request.execute();
     }
 
+    /**
+     * Persiste o estado do modelo no servidor.
+     *
+     * @param clazz {@link Class} do Modelo
+     * @param <T> Classe do Modelo
+     * @return O Modelo com os dados persistidos no servidor.
+     * @throws PagarMeException
+     */
     protected <T extends PagarMeModel> T save(final Class<T> clazz) throws PagarMeException {
 
-        if (!validate()) {
+        if (!beforeSave()) {
             return null;
         }
 
@@ -137,6 +180,11 @@ public abstract class PagarMeModel<PK extends Serializable> {
         return JsonUtils.getAsObject((JsonObject) element, clazz);
     }
 
+    /**
+     * Atualiza lista de atributos alterados.
+     *
+     * @param name Nome do atributo
+     */
     protected void addUnsavedProperty(final String name) {
         for (String s : dirtyProperties) {
             if (s.startsWith(name.concat("."))) {
@@ -146,11 +194,19 @@ public abstract class PagarMeModel<PK extends Serializable> {
         dirtyProperties.add(name);
     }
 
+    /**
+     * Limpa lista de atributos com dados alterados.
+     */
     protected void flush() {
         dirtyProperties.clear();
     }
 
-    protected boolean validate() {
+    /**
+     * Callback para validação de modelo no método {@link #save(Class)}.
+     *
+     * @return <code>true</code> para persistir os dados; <code>false</code> para não persistir
+     */
+    protected boolean beforeSave() {
         return true;
     }
 
