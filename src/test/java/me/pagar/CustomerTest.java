@@ -1,5 +1,7 @@
 package me.pagar;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +20,8 @@ public class CustomerTest extends BaseTest {
             CUSTOMER_ADDRESS_ZIP_CODE = "04840110",
             CUSTOMER_PHONE_DDD = "11",
             CUSTOMER_PHONE_NUMBER = "55284132";
+
+    private final DateTime CUSTOMER_BORN_AT = DateTime.parse("1981-03-23");
 
     private Customer customer;
 
@@ -42,8 +46,9 @@ public class CustomerTest extends BaseTest {
         final Phone phone = new Phone(CUSTOMER_PHONE_DDD, CUSTOMER_PHONE_NUMBER);
 
         customer.setName(CUSTOMER_NAME);
-        customer.setDocumentNumber(CUSTOMER_DOCUMENT_NUMBER);
         customer.setEmail(CUSTOMER_EMAIL);
+        customer.setDocumentNumber(CUSTOMER_DOCUMENT_NUMBER);
+        customer.setBornAt(CUSTOMER_BORN_AT);
 
         customer.setAddress(address);
         customer.setPhone(phone);

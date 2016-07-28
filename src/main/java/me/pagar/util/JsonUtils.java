@@ -19,7 +19,6 @@ public class JsonUtils {
         GSON_DATA_PROVIDER = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .registerTypeAdapter(DateTime.class, new DateTimeAdapter())
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .registerTypeAdapter(BulkAnticipation.class, new BulkAnticipationAdapter())
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .setLongSerializationPolicy(LongSerializationPolicy.STRING)
