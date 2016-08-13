@@ -4,8 +4,8 @@ jdk:
   - oraclejdk7
   - openjdk6
 branches:
-  except:
-    - gh-pages
-    - mvn-repo
+  only:
+  - master
+  - develop
 script:
   mvn verify

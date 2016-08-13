@@ -122,11 +122,6 @@ public class BankAccount extends PagarMeModel<Integer> {
     }
 
     public BankAccount save() throws PagarMeException {
-
-        if (null != getId()) {
-            throw new UnsupportedOperationException();
-        }
-
         final BankAccount saved = super.save(BankAccount.class);
         copy(saved);
 

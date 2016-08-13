@@ -15,7 +15,7 @@ Simply put the following snippet into your proper build config:
 #### Apache Maven
 
 ##### Repository
-```
+```xml
 <repositories>
     <repository>
         <id>pagarme-java-mvn-repo</id>
@@ -29,26 +29,28 @@ Simply put the following snippet into your proper build config:
 ```
 
 ##### Dependency
-```
+```xml
 <dependency>
     <groupId>me.pagar</groupId>
     <artifactId>pagarme-java</artifactId>
-    <version>${version.pagarme}</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
 #### Gradle/Grails
 
 ##### Repository
-```
+```groovy
 repositories {
     maven { url 'https://raw.githubusercontent.com/adrianoluis/pagarme-java/mvn-repo' }
 }
 ```
 
 ##### Dependency
-```
-compile 'me.pagar:pagarme-java:1.0.1'
+```groovy
+compile('me.pagar:pagarme-java:1.0.1') {
+    transitive = true
+}
 ```
 
 #### Apache Buildr
@@ -61,7 +63,7 @@ compile 'me.pagar:pagarme-java:1.0.1'
 #### Apache Ivy
 
 ##### Dependency
-```
+```xml
 <dependency org="me.pagar" name="pagarme-java" rev="1.0.1">
     <artifact name="pagarme-java" type="jar" />
 </dependency>
@@ -70,7 +72,7 @@ compile 'me.pagar:pagarme-java:1.0.1'
 #### Groovy Grape
 
 ##### Dependency
-```
+```groovy
 @Grapes(
   @Grab(group='me.pagar', module='pagarme-java', version='1.0.1')
 )
@@ -79,14 +81,14 @@ compile 'me.pagar:pagarme-java:1.0.1'
 #### Scala SBT
 
 ##### Dependency
-```
+```scala
 libraryDependencies += "me.pagar" % "pagarme-java" % "1.0.1"
 ```
 
 #### Leiningen
 
 ##### Dependency
-```
+```clojure
 [me.pagar/pagarme-java "1.0.1"]
 ```
 
