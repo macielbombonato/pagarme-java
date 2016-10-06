@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import me.pagar.util.JsonUtils;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -132,6 +131,13 @@ public class Customer extends PagarMeModel<Integer> {
         copy(saved);
 
         return saved;
+    }
+
+    public Customer refresh() throws PagarMeException {
+        final Customer other = JsonUtils.getAsObject(refreshModel(), Customer.class);
+        copy(other);
+        flush();
+        return other;
     }
 
     private void copy(Customer other) {
