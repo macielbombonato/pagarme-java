@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import me.pagar.util.JsonUtils;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import javax.ws.rs.HttpMethod;
 import java.util.ArrayList;
@@ -740,27 +739,31 @@ public class Transaction extends PagarMeModel<Integer> {
 
     private void copy(Transaction other) {
         setId(other.getId());
-        this.subscriptionId = other.subscriptionId;
-        this.amount = other.amount;
-        this.installments = other.installments;
-        this.cost = other.cost;
         this.status = other.status;
         this.statusReason = other.statusReason;
-        this.acquirerName = other.acquirerName;
         this.acquirerResponseCode = other.acquirerResponseCode;
+        this.acquirerName = other.acquirerName;
         this.authorizationCode = other.authorizationCode;
         this.softDescriptor = other.softDescriptor;
         this.tid = other.tid;
         this.nsu = other.nsu;
+        this.updatedAt = other.updatedAt;
+        this.amount = other.amount;
+        this.installments = other.installments;
+        this.cost = other.cost;
         this.postbackUrl = other.postbackUrl;
         this.paymentMethod = other.paymentMethod;
         this.boletoUrl = other.boletoUrl;
         this.boletoBarcode = other.boletoBarcode;
+        this.boletoExpirationDate = other.boletoExpirationDate;
         this.referer = other.referer;
         this.ip = other.ip;
-        this.cardId = other.cardId;
-        this.metadata = other.metadata;
+        this.subscriptionId = other.subscriptionId;
+        this.phone = other.phone;
+        this.address = other.address;
+        this.customer = other.customer;
         this.card = other.card;
+        this.metadata = other.metadata;
     }
 
     /**
