@@ -117,7 +117,7 @@
 
     <profiles>
         <profile>
-            <id>mvn-repo</id>
+            <id>github</id>
             <build>
                 <plugins>
                     <plugin>
