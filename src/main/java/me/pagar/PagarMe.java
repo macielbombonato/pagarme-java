@@ -23,8 +23,6 @@ public abstract class PagarMe {
 
     public static final String SHA256_ALGORITHM = "sha256";
 
-    public static final String ASCII = "ASCII";
-
     private static String apiKey;
 
     public static String fullApiUrl(final String path) {
@@ -52,7 +50,7 @@ public abstract class PagarMe {
 
         try {
             // get an hmac_sha1 key from the raw key bytes
-            final SecretKeySpec signingKey = new SecretKeySpec(apiKey.getBytes(ASCII), parts[0]);
+            final SecretKeySpec signingKey = new SecretKeySpec(apiKey.getBytes(), parts[0]);
 
             String algorithm = HMAC_MD5_ALGORITHM;
 
@@ -67,16 +65,17 @@ public abstract class PagarMe {
             mac.init(signingKey);
 
             // compute the hmac on input data bytes
-            final byte[] rawHmac = mac.doFinal(URLDecoder.decode(payload, ASCII).getBytes(ASCII));
+            final byte[] rawHmac = mac.doFinal(payload.getBytes());
 
             final Formatter formatter = new Formatter();
 
             // right transform into sha1 hash
             for (byte b : rawHmac) {
-                formatter.format("%02x", 0xFF & b);
+                formatter.format("%02x", 0xff & b);
             }
 
             final String hash = formatter.toString();
+            formatter.close();
 
             return (parts.length == 2) && (hash.equals(parts[1]));
         } catch (Exception e) {
