@@ -4,7 +4,7 @@
 
     <groupId>me.pagar</groupId>
     <artifactId>pagarme-java</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -117,7 +117,7 @@
 
     <profiles>
         <profile>
-            <id>mvn-repo</id>
+            <id>github</id>
             <build>
                 <plugins>
                     <plugin>
