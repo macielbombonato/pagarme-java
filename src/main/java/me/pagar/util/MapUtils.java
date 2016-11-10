@@ -16,6 +16,8 @@ import java.util.Map;
 
 public class MapUtils {
 
+    private static final String UTF_8 = "UTF-8";
+
     public static String mapToString(final Map<String, Object> map) {
         final StringBuilder stringBuilder = new StringBuilder();
 
@@ -28,9 +30,9 @@ public class MapUtils {
             final String value = String.valueOf(map.get(key));
 
             try {
-                stringBuilder.append(URLEncoder.encode(Strings.nullToEmpty(key), "UTF-8"));
+                stringBuilder.append(URLEncoder.encode(Strings.nullToEmpty(key), UTF_8));
                 stringBuilder.append("=");
-                stringBuilder.append(URLEncoder.encode(Strings.nullToEmpty(value), "UTF-8"));
+                stringBuilder.append(URLEncoder.encode(Strings.nullToEmpty(value), UTF_8));
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException("This method requires UTF-8 encoding support", e);
             }
@@ -45,12 +47,14 @@ public class MapUtils {
         final String[] keyValuePairs = query.split("&");
 
         for (String KeyValuePair : keyValuePairs) {
-            final String[] KeyValue = KeyValuePair.split("=");
+            final String[] keyValue = KeyValuePair.split("=");
 
-            try {
-                map.put(URLDecoder.decode(KeyValue[0], "UTF-8"), Strings.nullToEmpty(KeyValue[1]));
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException("This method requires UTF-8 encoding support", e);
+            if (keyValue.length > 0) {
+                try {
+                    map.put(URLDecoder.decode(keyValue[0], UTF_8), keyValue.length == 2 ? keyValue[1] : null);
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException("This method requires UTF-8 encoding support", e);
+                }
             }
 
         }
