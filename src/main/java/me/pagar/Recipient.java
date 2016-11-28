@@ -137,8 +137,6 @@ public class Recipient extends PagarMeModel<String> {
      * @throws PagarMeException
      */
     public Collection<BulkAnticipation> bulkAnticipations() throws PagarMeException {
-        validateId();
-
         final BulkAnticipation bulkAnticipation = new BulkAnticipation();
 
         final PagarMeRequest request = new PagarMeRequest(HttpMethod.GET, String.format("/%s/%s/%s", getClassName(),
@@ -156,8 +154,6 @@ public class Recipient extends PagarMeModel<String> {
      * @throws PagarMeException
      */
     public BulkAnticipation bulkAnticipations(final BulkAnticipation bulkAnticipation) throws PagarMeException {
-        validateId();
-
         final PagarMeRequest request = new PagarMeRequest(HttpMethod.POST,
                 String.format("/%s/%s/%s", getClassName(), getId(), bulkAnticipation.getClassName()));
         request.setParameters(JsonUtils.objectToMap(bulkAnticipation));
@@ -174,8 +170,6 @@ public class Recipient extends PagarMeModel<String> {
      * @throws PagarMeException
      */
     public BulkAnticipation bulkAnticipationsConfirm(final String bulkAnticipationId) throws PagarMeException {
-        validateId();
-
         final BulkAnticipation bulkAnticipation = new BulkAnticipation();
 
         final PagarMeRequest request = new PagarMeRequest(HttpMethod.POST,
@@ -194,8 +188,6 @@ public class Recipient extends PagarMeModel<String> {
      * @throws PagarMeException
      */
     public BulkAnticipation bulkAnticipationsCancel(final String bulkAnticipationId) throws PagarMeException {
-        validateId();
-
         final BulkAnticipation bulkAnticipation = new BulkAnticipation();
 
         final PagarMeRequest request = new PagarMeRequest(HttpMethod.POST,
@@ -215,8 +207,6 @@ public class Recipient extends PagarMeModel<String> {
      * @throws PagarMeException
      */
     public BulkAnticipation bulkAnticipationsDelete(final String bulkAnticipationId) throws PagarMeException {
-        validateId();
-
         final BulkAnticipation bulkAnticipation = new BulkAnticipation();
 
         final PagarMeRequest request = new PagarMeRequest(HttpMethod.DELETE,
@@ -225,7 +215,6 @@ public class Recipient extends PagarMeModel<String> {
 
         return JsonUtils.getAsObject((JsonObject) request.execute(), BulkAnticipation.class);
     }
-
 
     public BulkAnticipation.Limits bulkAnticipationsLimits() throws PagarMeException {
         final BulkAnticipation bulkAnticipation = new BulkAnticipation();
