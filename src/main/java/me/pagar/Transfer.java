@@ -42,7 +42,7 @@ public class Transfer extends PagarMeModel<String> {
         return bankAccount;
     }
 
-    public void setBankAccount(BankAccount bankAccount) {
+    public void setBankAccount(final BankAccount bankAccount) {
         this.bankAccount = bankAccount;
     }
 
@@ -50,7 +50,7 @@ public class Transfer extends PagarMeModel<String> {
         return transactionId;
     }
 
-    public void setTransactionId(Integer transactionId) {
+    public void setTransactionId(final Integer transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -58,7 +58,7 @@ public class Transfer extends PagarMeModel<String> {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(final Integer amount) {
         this.amount = amount;
     }
 
@@ -66,7 +66,7 @@ public class Transfer extends PagarMeModel<String> {
         return fee;
     }
 
-    public void setFee(Integer fee) {
+    public void setFee(final Integer fee) {
         this.fee = fee;
     }
 
@@ -74,7 +74,7 @@ public class Transfer extends PagarMeModel<String> {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(final Type type) {
         this.type = type;
     }
 
@@ -82,7 +82,7 @@ public class Transfer extends PagarMeModel<String> {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(final Status status) {
         this.status = status;
     }
 
@@ -90,7 +90,7 @@ public class Transfer extends PagarMeModel<String> {
         return fundingEstimatedDate;
     }
 
-    public void setFundingEstimatedDate(DateTime fundingEstimatedDate) {
+    public void setFundingEstimatedDate(final DateTime fundingEstimatedDate) {
         this.fundingEstimatedDate = fundingEstimatedDate;
     }
 
@@ -98,24 +98,17 @@ public class Transfer extends PagarMeModel<String> {
         return fundingDate;
     }
 
-    public void setFundingDate(DateTime fundingDate) {
+    public void setFundingDate(final DateTime fundingDate) {
         this.fundingDate = fundingDate;
     }
 
-    public Transfer(Integer amount, BankAccount bankAccount) {
+    public Transfer(final Integer amount, final BankAccount bankAccount) {
         this.amount = amount;
         this.bankAccount = bankAccount;
     }
 
     public Transfer create() throws PagarMeException {
-        final PagarMeRequest request = new PagarMeRequest(
-                HttpMethod.POST,
-                String.format(
-                        "/%s",
-                        getClassName()
-                )
-        );
-
+        final PagarMeRequest request = new PagarMeRequest(HttpMethod.POST, String.format("/%s", getClassName()));
         request.setParameters(JsonUtils.objectToMap(this));
 
         return JsonUtils.getAsObject((JsonObject) request.execute(), Transfer.class);
@@ -129,7 +122,7 @@ public class Transfer extends PagarMeModel<String> {
         @SerializedName("ted")
         TED,
 
-        @SerializedName("DOC")
+        @SerializedName("doc")
         DOC,
 
         @SerializedName("credito_em_conta")

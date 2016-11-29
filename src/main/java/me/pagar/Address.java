@@ -1,7 +1,6 @@
 package me.pagar;
 
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import org.joda.time.DateTime;
 
 public class Address extends PagarMeModel<Integer> {
