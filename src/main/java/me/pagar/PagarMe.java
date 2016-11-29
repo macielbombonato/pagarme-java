@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.net.URLDecoder;
 import java.util.Formatter;
 
 public abstract class PagarMe {

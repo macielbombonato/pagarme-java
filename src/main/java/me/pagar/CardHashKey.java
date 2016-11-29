@@ -1,7 +1,6 @@
 package me.pagar;
 
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 public class CardHashKey extends PagarMeModel<Integer> {
 

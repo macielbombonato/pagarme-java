@@ -216,7 +216,7 @@ public class Recipient extends PagarMeModel<String> {
      */
     public BulkAnticipation bulkAnticipationsDelete(final String bulkAnticipationId) throws PagarMeException {
         validateId();
-
+        
         final BulkAnticipation bulkAnticipation = new BulkAnticipation();
 
         final PagarMeRequest request = new PagarMeRequest(HttpMethod.DELETE,
@@ -225,7 +225,6 @@ public class Recipient extends PagarMeModel<String> {
 
         return JsonUtils.getAsObject((JsonObject) request.execute(), BulkAnticipation.class);
     }
-
 
     public BulkAnticipation.Limits bulkAnticipationsLimits() throws PagarMeException {
         final BulkAnticipation bulkAnticipation = new BulkAnticipation();
